@@ -36,17 +36,28 @@ const AgeCalculator = () => {
 
     const ageInMilliseconds = today - birthDate;
     const years = Math.floor(ageInMilliseconds / (1000 * 60 * 60 * 24 * 365.25));
-    const months = Math.floor(
-      (ageInMilliseconds % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44)
-    );
-    const days = Math.floor(
+    const months = today.getMonth() - birthDate.getMonth() + (years * 12);
+    const days = Math.floor(ageInMilliseconds / (1000 * 60 * 60 * 24));
+
+    const remainingMonths = months % 12;
+    const remainingDays = Math.floor(
       (ageInMilliseconds % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24)
     );
+
     const hours = new Date().getHours();
     const minutes = new Date().getMinutes();
     const seconds = new Date().getSeconds();
 
-    return { years, months, days, hours, minutes, seconds };
+    return {
+      years,
+      months: remainingMonths,
+      days: remainingDays,
+      totalMonths: months,
+      totalDays: days,
+      hours,
+      minutes,
+      seconds
+    };
   };
 
   const calculateNextBirthday = (dob) => {
@@ -120,6 +131,7 @@ const AgeCalculator = () => {
               <div>Your age is:</div>
               <div>{age.years} years, {age.months} months, {age.days} days</div>
               <div>{age.hours} hours, {age.minutes} minutes, {age.seconds} seconds</div>
+              <div>Total: {age.totalMonths} months, {age.totalDays} days</div>
             </Alert>
           )}
           {nextBirthday && (
