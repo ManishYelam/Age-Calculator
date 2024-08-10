@@ -1,0 +1,26 @@
+/* AgeCalculator.css */
+
+body.light-mode {
+    background-color: #f8f9fa;
+    color: #343a40;
+  }
+  
+  body.dark-mode {
+    background-color: #343a40;
+    color: #f8f9fa;
+  }
+  
+  .container {
+    transition: all 0.3s ease-in-out;
+  }
+  
+  button.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  button.btn-secondary:hover {
+    background-color: #5a6268;
+  }
+  
